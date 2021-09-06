@@ -1,7 +1,6 @@
 package blog.integration
 
 import blog.entities.toSlug
-import blog.repositories.ArticleRepository
 import io.kotest.core.spec.style.DescribeSpec
 import org.assertj.core.api.Assertions.assertThat
 import org.springframework.boot.test.context.SpringBootTest
@@ -9,9 +8,7 @@ import org.springframework.test.web.reactive.server.WebTestClient
 import org.springframework.test.web.reactive.server.expectBody
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class HtmlTest(
-    client: WebTestClient, articleRepository: ArticleRepository
-): DescribeSpec({
+class HtmlTest(client: WebTestClient) : DescribeSpec({
     describe("article list page") {
         it("works") {
             val title    = "Reactor Bismuth is out"

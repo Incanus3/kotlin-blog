@@ -13,7 +13,7 @@ class BlogTest(
     val entityManager:     TestEntityManager,
     val userRepository:    UserRepository,
     val articleRepository: ArticleRepository,
-): DescribeSpec({
+) : DescribeSpec({
     describe("findByIdOrNull") {
         it("works") {
             val juergen = User("springjuergen", "Juergen", "Hoeller")

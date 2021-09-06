@@ -18,7 +18,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.*
 @ContextConfiguration
 class ApiTest(
     private val mockMvc: MockMvc,
-): DescribeSpec() {
+) : DescribeSpec() {
     @MockkBean private lateinit var userRepository:    UserRepository
     @MockkBean private lateinit var articleRepository: ArticleRepository
 

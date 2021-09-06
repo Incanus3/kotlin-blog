@@ -2,13 +2,16 @@ package blog.repositories
 
 import blog.entities.Article
 import blog.entities.User
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.PagingAndSortingRepository
+import org.springframework.data.rest.core.annotation.RepositoryRestResource
 
-interface ArticleRepository: CrudRepository<Article, Long> {
+@RepositoryRestResource
+interface ArticleRepository : PagingAndSortingRepository<Article, Long> {
     fun findBySlug(slug: String): Article?
     fun findAllByOrderByAddedAtDesc(): Iterable<Article>
 }
 
-interface UserRepository: CrudRepository<User, Long> {
+@RepositoryRestResource
+interface UserRepository : PagingAndSortingRepository<User, Long> {
     fun findByLogin(login: String): User?
 }

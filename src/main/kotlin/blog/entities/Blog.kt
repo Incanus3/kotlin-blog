@@ -4,10 +4,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatterBuilder
 import java.time.temporal.ChronoField
 import java.util.*
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 fun LocalDateTime.format() = this.format(englishDateFormatter)
 
@@ -37,21 +34,28 @@ fun String.toSlug() = lowercase()
     .replace("-+".toRegex(), "-")
 
 @Entity
+@Table(name = "articles")
 class Article(
+    // these should not have defaults, but if they don't,
+    // ArticleRepository.findAllByOrderByAddedAtDesc fails with "no default constructor"
     var title:    String = "",
     var headline: String = "",
     var content:  String = "",
 
     @ManyToOne var author: User = User(),
 
-    var slug:    String        = title.toSlug(),
+    @Column(unique = true)
+    var slug: String = title.toSlug(),
+
     var addedAt: LocalDateTime = LocalDateTime.now(),
 
     @Id @GeneratedValue var id: Long? = null,
 )
 
 @Entity
+@Table(name = "users")
 class User(
+    @Column(unique = true)
     var login:       String = "",
     var firstName:   String = "",
     var lastName:    String = "",
