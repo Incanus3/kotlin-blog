@@ -3,7 +3,7 @@ package blog.controllers
 import blog.configuration.BlogProperties
 import blog.entities.Article
 import blog.entities.User
-import blog.entities.format
+import utils.datetime.format
 import blog.repositories.ArticleRepository
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
