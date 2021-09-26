@@ -27,6 +27,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.5.4")
     implementation("org.springframework.boot:spring-boot-starter-data-rest:2.5.4")
     implementation("org.springframework.boot:spring-boot-starter-actuator:2.5.4")
+    implementation("com.querydsl:querydsl-jpa:4.4.0")
+    kapt("com.querydsl:querydsl-apt:4.4.0:general")
 
     runtimeOnly("com.h2database:h2:1.4.200")
 
@@ -50,7 +52,7 @@ dependencies {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
+        freeCompilerArgs = listOf("-Xjsr305=strict", "-Xjvm-default=all-compatibility")
         jvmTarget = "11"
     }
 }

@@ -1,5 +1,7 @@
 package blog.entities
 
+import com.querydsl.core.annotations.QueryEntity
+import org.springframework.data.rest.core.config.Projection
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -11,6 +13,7 @@ fun String.toSlug() = lowercase()
     .replace("-+".toRegex(), "-")
 
 @Entity
+@QueryEntity
 @Table(name = "articles")
 class Article(
     // these should not have defaults, but if they don't,
@@ -30,7 +33,19 @@ class Article(
     @Id @GeneratedValue var id: Long? = null,
 )
 
+@Projection(name = "withAuthor", types = [Article::class])
+interface ArticleWithAddress {
+    val id: Long
+    val title: String
+    val headline: String
+    val content: String
+    val slug: String
+    val addedAt: LocalDateTime
+    val author: User
+}
+
 @Entity
+@QueryEntity
 @Table(name = "users")
 class User(
     @Column(unique = true)
@@ -40,4 +55,6 @@ class User(
     var description: String = "",
 
     @Id @GeneratedValue var id: Long? = null,
+
+    @OneToMany(mappedBy = "author") val articles: List<Article> = listOf(),
 )
