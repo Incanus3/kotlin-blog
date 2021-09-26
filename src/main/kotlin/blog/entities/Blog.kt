@@ -38,6 +38,7 @@ fun String.toSlug() = lowercase()
 class Article(
     // these should not have defaults, but if they don't,
     // ArticleRepository.findAllByOrderByAddedAtDesc fails with "no default constructor"
+    // look at https://docs.spring.io/spring-data/commons/docs/current/reference/html/#mapping.fundamentals to find out more
     var title:    String = "",
     var headline: String = "",
     var content:  String = "",

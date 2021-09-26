@@ -1,6 +1,6 @@
 package blog.controllers
 
-import blog.BlogProperties
+import blog.configuration.BlogProperties
 import blog.entities.Article
 import blog.entities.User
 import blog.entities.format
