@@ -28,6 +28,20 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-rest:2.5.4")
     implementation("org.springframework.boot:spring-boot-starter-actuator:2.5.4")
     implementation("com.querydsl:querydsl-jpa:4.4.0")
+    // implementation("com.toedter:spring-hateoas-jsonapi:1.0.2")
+
+    implementation("io.crnk:crnk-bom:3.4.20210509072026")
+    implementation("io.crnk:crnk-setup-spring-boot2:3.4.20210509072026")
+    implementation("io.crnk:crnk-data-jpa:3.4.20210509072026")
+    implementation("io.crnk:crnk-home:3.4.20210509072026")
+    implementation("io.crnk:crnk-ui:3.4.20210509072026")
+
+    // implementation("io.crnk:crnk-data-facet:3.4.20210509072026")
+    // implementation("io.crnk:crnk-format-plain-json:3.4.20210509072026")
+    // implementation("io.crnk:crnk-validation:3.4.20210509072026")
+    // implementation("io.crnk:crnk-operations:3.4.20210509072026")
+    // implementation("io.crnk:crnk-security:3.4.20210509072026")
+
     kapt("com.querydsl:querydsl-apt:4.4.0:general")
 
     runtimeOnly("com.h2database:h2:1.4.200")

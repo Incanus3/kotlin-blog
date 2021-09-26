@@ -4,6 +4,9 @@ import blog.entities.Article
 import blog.entities.User
 import blog.repositories.ArticleRepository
 import blog.repositories.UserRepository
+// import com.fasterxml.jackson.databind.ObjectMapper
+// import com.fasterxml.jackson.databind.SerializationFeature
+// import com.toedter.spring.hateoas.jsonapi.JsonApiConfiguration
 import org.springframework.boot.ApplicationRunner
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
@@ -14,6 +17,7 @@ import org.springframework.data.rest.core.mapping.RepositoryDetectionStrategy
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.config.annotation.CorsRegistry
+// import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @ConstructorBinding
 @ConfigurationProperties("blog")
@@ -32,6 +36,20 @@ class CustomizedRestMvcConfiguration : RepositoryRestConfigurer {
             RepositoryDetectionStrategy.RepositoryDetectionStrategies.ANNOTATED
     }
 }
+
+// @Configuration
+// class CustomizedWebMvcConfiguration : WebMvcConfigurer {
+//     @Bean
+//     fun jsonApiConfiguration(): JsonApiConfiguration {
+//         println("jsonApiConfiguration called")
+//         return JsonApiConfiguration()
+//             .withJsonApiVersionRendered(true)
+//             .withObjectMapperCustomizer { objectMapper: ObjectMapper ->
+//                 // put your additional object mapper config here
+//                 objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true)
+//             }
+//     }
+// }
 
 @Configuration
 class BlogConfiguration {

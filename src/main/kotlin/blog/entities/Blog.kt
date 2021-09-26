@@ -1,7 +1,10 @@
 package blog.entities
 
 import com.querydsl.core.annotations.QueryEntity
+import io.crnk.core.queryspec.pagingspec.NumberSizePagingSpec
+import io.crnk.core.resource.annotations.JsonApiResource
 import org.springframework.data.rest.core.config.Projection
+// import org.springframework.hateoas.server.core.Relation
 import java.time.LocalDateTime
 import javax.persistence.*
 
@@ -14,6 +17,8 @@ fun String.toSlug() = lowercase()
 
 @Entity
 @QueryEntity
+@JsonApiResource(type = "article", pagingSpec = NumberSizePagingSpec::class)
+// @Relation(collectionRelation = "articles")
 @Table(name = "articles")
 class Article(
     // these should not have defaults, but if they don't,
@@ -34,7 +39,7 @@ class Article(
 )
 
 @Projection(name = "withAuthor", types = [Article::class])
-interface ArticleWithAddress {
+interface ArticleWithAuthor {
     val id: Long
     val title: String
     val headline: String
@@ -46,6 +51,8 @@ interface ArticleWithAddress {
 
 @Entity
 @QueryEntity
+@JsonApiResource(type = "user")
+// @Relation(collectionRelation = "users")
 @Table(name = "users")
 class User(
     @Column(unique = true)
