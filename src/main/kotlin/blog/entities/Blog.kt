@@ -17,7 +17,7 @@ fun String.toSlug() = lowercase()
 
 @Entity
 @QueryEntity
-@JsonApiResource(type = "article", pagingSpec = NumberSizePagingSpec::class)
+@JsonApiResource(type = "article", resourcePath = "articles")
 // @Relation(collectionRelation = "articles")
 @Table(name = "articles")
 class Article(
@@ -51,7 +51,7 @@ interface ArticleWithAuthor {
 
 @Entity
 @QueryEntity
-@JsonApiResource(type = "user")
+@JsonApiResource(type = "user", resourcePath = "users")
 // @Relation(collectionRelation = "users")
 @Table(name = "users")
 class User(
