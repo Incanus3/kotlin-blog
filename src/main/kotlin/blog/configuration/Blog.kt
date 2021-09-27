@@ -4,6 +4,9 @@ import blog.entities.Article
 import blog.entities.User
 import blog.repositories.ArticleRepository
 import blog.repositories.UserRepository
+import io.crnk.core.boot.CrnkBoot
+import io.crnk.core.queryspec.pagingspec.NumberSizePagingBehavior
+import io.crnk.spring.setup.boot.core.CrnkBootConfigurer
 // import com.fasterxml.jackson.databind.ObjectMapper
 // import com.fasterxml.jackson.databind.SerializationFeature
 // import com.toedter.spring.hateoas.jsonapi.JsonApiConfiguration
@@ -50,6 +53,15 @@ class CustomizedRestMvcConfiguration : RepositoryRestConfigurer {
 //             }
 //     }
 // }
+
+@Configuration
+class CrnkConfig : CrnkBootConfigurer {
+    override fun configure(crnkBoot: CrnkBoot?) {
+        if (crnkBoot == null) return
+
+        crnkBoot.addModule(NumberSizePagingBehavior.createModule())
+    }
+}
 
 @Configuration
 class BlogConfiguration {
